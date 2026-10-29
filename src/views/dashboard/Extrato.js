@@ -11,6 +11,7 @@ import useSettings from 'src/hooks/useSettings';
 import Page from 'src/components/Page';
 import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs';
 import { MoreVert } from '@mui/icons-material';
+import { border } from 'src/theme/modeColor';
 // redux actions
 
 // ----------------------------------------------------------------------
@@ -106,7 +107,8 @@ export default function Extrato() {
                   justifyContent: "space-between",
                   alignItems: "center",
                   py: 2,
-                  borderBottom: "1px solid #f0f0f0"
+                  borderBottom: "1px solid",
+                  borderColor: border('#f0f0f0')
                 }}>
                 {/* Detalhes da movimentação */}
                 <Box>

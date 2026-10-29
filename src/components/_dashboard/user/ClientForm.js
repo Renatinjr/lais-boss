@@ -40,6 +40,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CloseIcon from '@mui/icons-material/Close';
 import v2_actionEditarCliente from 'src/actions/v2/clientes/v2_actionEditarCliente';
+import { surface } from 'src/theme/modeColor';
 
 // ACTIONS ---------------------------------------------------------------------
 //import editarCliente from "../../../actions/editarCliente";
@@ -505,7 +506,7 @@ export default function ClientForm({
               border: '1px solid',
               borderColor: 'divider',
               borderRadius: 2,
-              bgcolor: 'grey.50'
+              bgcolor: surface('grey.50')
             }}>
               <FormControlLabel
                 value="start"
@@ -541,7 +542,7 @@ export default function ClientForm({
               border: '1px solid',
               borderColor: 'divider',
               borderRadius: 2,
-              bgcolor: 'grey.50'
+              bgcolor: surface('grey.50')
             }}>
               <FormControlLabel
                 value="start"
@@ -604,7 +605,7 @@ export default function ClientForm({
             display: 'flex',
             justifyContent: 'flex-end',
             p: 2,
-            bgcolor: 'grey.50',
+            bgcolor: surface('grey.50'),
             borderRadius: 2,
             border: '1px solid',
             borderColor: 'divider'
@@ -742,7 +743,7 @@ export default function ClientForm({
               border: '2px dashed',
               borderColor: 'divider',
               borderRadius: 2,
-              bgcolor: 'grey.50'
+              bgcolor: surface('grey.50')
             }}>
               <Typography
                 variant="body1"
@@ -819,8 +820,10 @@ export default function ClientForm({
               size="small"
               value={planoSelecionado}
               onChange={(e) => changePlanoSelecionado(e.target.value)}
-              SelectProps={{
-                native: true
+              slotProps={{
+                select: {
+                  native: true
+                }
               }}
             >
               <option value="">Selecione um plano</option>
@@ -894,7 +897,7 @@ export default function ClientForm({
                       border: '1px solid',
                       borderColor: 'divider',
                       borderRadius: 1,
-                      bgcolor: 'grey.50'
+                      bgcolor: surface('grey.50')
                     }}
                   >
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
@@ -965,7 +968,7 @@ export default function ClientForm({
                     }}
                   />
 
-                  <Box sx={{ p: 1.5, bgcolor: 'grey.50', borderRadius: 1 }}>
+                  <Box sx={{ p: 1.5, bgcolor: surface('grey.50'), borderRadius: 1 }}>
                     <Stack spacing={0.5}>
                       <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Subtotal:</span>

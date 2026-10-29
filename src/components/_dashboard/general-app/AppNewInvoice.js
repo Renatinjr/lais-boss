@@ -70,8 +70,10 @@ function MoreMenuButton() {
         open={open}
         anchorEl={menuRef.current}
         onClose={handleClose}
-        PaperProps={{
-          sx: { width: 200, maxWidth: '100%' }
+        slotProps={{
+          paper: {
+            sx: { width: 200, maxWidth: '100%' }
+          }
         }}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}

@@ -13,6 +13,7 @@ import v2_actionImportarContatos from 'src/actions/v2/clientes/v2_importarContat
 import { useDropzone } from 'react-dropzone';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { surface } from 'src/theme/modeColor';
 
 export default function ModalImportarUsuarios({
   cliente,
@@ -124,7 +125,7 @@ export default function ModalImportarUsuarios({
           Selecione o arquivo CSV contendo os dados dos usuários que você deseja
           importar.
         </DialogContentText>
-        <Typography variant="body2" sx={{ p:3 , background:'#f9f9f9', borderRadius:2 }}>
+        <Typography variant="body2" sx={{ p:3 , background: surface('#f9f9f9'), borderRadius:2 }}>
           Instruções:
           <ul>
             <li>O arquivo deve estar no formato CSV.</li>

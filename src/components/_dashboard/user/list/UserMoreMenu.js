@@ -81,8 +81,10 @@ export default function UserMoreMenu({ onDelete, userId, onBlock, onCallback, us
         open={isOpen}
         anchorEl={ref.current}
         onClose={() => setIsOpen(false)}
-        PaperProps={{
-          sx: { width: 200, maxWidth: '100%' }
+        slotProps={{
+          paper: {
+            sx: { width: 200, maxWidth: '100%' }
+          }
         }}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -121,7 +123,7 @@ export default function UserMoreMenu({ onDelete, userId, onBlock, onCallback, us
   <ListItemIcon>
     <CloseIcon width={24} height={24} />
   </ListItemIcon>
-  <ListItemText primary="Excluir Cliente" primaryTypographyProps={{ variant: 'body2' }} />
+  <ListItemText primary="Excluir Cliente" slotProps={{ primary: { variant: 'body2' } }} />
 </MenuItem> */}
       </Menu>
     </>

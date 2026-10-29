@@ -48,8 +48,9 @@ const ItemCanalAtencao = ({ channel, onChangeSentinelaStatus }) => {
             sx={{
                 borderRadius: 1,
                 border: 1,
-                bgcolor: 'grey.100',
-                borderColor: 'grey.300',
+                // light: the original light-grey card; dark: the theme's dark surface
+                bgcolor: (theme) => (theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[800]),
+                borderColor: (theme) => (theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.divider),
                 p: 1
             }}
         >

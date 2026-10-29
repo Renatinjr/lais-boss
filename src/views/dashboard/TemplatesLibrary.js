@@ -73,6 +73,7 @@ import actionDeletarTemplate from '../../actions/library/actionDeletarTemplate';
 // toast
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { surface } from 'src/theme/modeColor';
 
 // ----------------------------------------------------------------------
 
@@ -276,7 +277,7 @@ function TemplatePreview({ template }) {
     <Paper
       sx={{
         p: 3,
-        bgcolor: 'grey.100',
+        bgcolor: surface('grey.100'),
         borderRadius: 2,
         maxWidth: 400,
         mx: 'auto'

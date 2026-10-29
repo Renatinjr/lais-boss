@@ -74,7 +74,7 @@ export default function ActionsChannel({data}) {
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
                 >
-                    <Iconify icon="bi:three-dots" color="#000" />
+                    <Iconify icon="bi:three-dots" sx={{ color: (theme) => (theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.text.primary) }} />
                 </Button>
                 <Menu
                     id="basic-menu"

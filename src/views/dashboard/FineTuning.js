@@ -63,6 +63,7 @@ import {
   getTrainingFile,
   deleteTrainingFile
 } from '../../actions/v2/ai/v2_actionOpenAIFineTuning';
+import { paper, surface } from 'src/theme/modeColor';
 
 // ----------------------------------------------------------------------
 
@@ -864,7 +865,7 @@ export default function FineTuning() {
                     component="pre"
                     sx={{
                       p: 2,
-                      bgcolor: 'grey.100',
+                      bgcolor: surface('grey.100'),
                       borderRadius: 1,
                       overflow: 'auto',
                       fontSize: '0.75rem'
@@ -1351,7 +1352,7 @@ export default function FineTuning() {
                       </Typography>
                     ) : (
                       jobEvents.map((event, index) => (
-                        <Box key={index} sx={{ mb: 1, p: 1, bgcolor: 'grey.50', borderRadius: 1 }}>
+                        <Box key={index} sx={{ mb: 1, p: 1, bgcolor: surface('grey.50'), borderRadius: 1 }}>
                           <Typography variant="caption" sx={{
                             color: "text.secondary"
                           }}>
@@ -1618,7 +1619,7 @@ export default function FineTuning() {
                         </Box>
                         <Scrollbar sx={{ maxHeight: 'calc(100vh - 450px)' }}>
                           {trainingConversations.map((conv, convIdx) => (
-                            <Paper key={conv.id} sx={{ p: 1.5, mb: 1.5, bgcolor: 'grey.50' }}>
+                            <Paper key={conv.id} sx={{ p: 1.5, mb: 1.5, bgcolor: surface('grey.50') }}>
                               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
                                 <Typography variant="caption" sx={{ fontWeight: 600 }}>#{convIdx + 1}</Typography>
                                 <Box>
@@ -1749,7 +1750,7 @@ export default function FineTuning() {
                         </Box>
                         <Scrollbar sx={{ maxHeight: 'calc(100vh - 450px)' }}>
                           {validationConversations.length === 0 ? (
-                            <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'grey.50' }}>
+                            <Paper sx={{ p: 2, textAlign: 'center', bgcolor: surface('grey.50') }}>
                               <Typography variant="caption" sx={{
                                 color: "text.secondary"
                               }}>
@@ -1758,7 +1759,7 @@ export default function FineTuning() {
                             </Paper>
                           ) : (
                             validationConversations.map((conv, convIdx) => (
-                              <Paper key={conv.id} sx={{ p: 1.5, mb: 1.5, bgcolor: 'grey.50' }}>
+                              <Paper key={conv.id} sx={{ p: 1.5, mb: 1.5, bgcolor: surface('grey.50') }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
                                   <Typography variant="caption" sx={{ fontWeight: 600 }}>#{convIdx + 1}</Typography>
                                   <Box>
@@ -2072,7 +2073,7 @@ export default function FineTuning() {
 
               {!useFormMode && (
                 <Grid size={12}>
-                  <Paper sx={{ p: 2, bgcolor: 'grey.50' }}>
+                  <Paper sx={{ p: 2, bgcolor: surface('grey.50') }}>
                     <Typography variant="caption" sx={{
                       color: "text.secondary"
                     }}>
@@ -2083,7 +2084,7 @@ export default function FineTuning() {
                       sx={{
                         mt: 1,
                         p: 1,
-                        bgcolor: 'white',
+                        bgcolor: paper('white'),
                         borderRadius: 1,
                         fontSize: '0.75rem',
                         overflow: 'auto'

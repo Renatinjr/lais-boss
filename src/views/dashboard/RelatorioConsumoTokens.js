@@ -75,109 +75,113 @@ const MODELOS_CONFIG = {
 };
 
 // former makeStyles classes, now nested under the root element
-const RootStyle = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
-  paddingTop: theme.spacing(2),
-  paddingBottom: theme.spacing(2),
-  '& .rct-filterSection': {
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: theme.spacing(1),
-    border: `1px solid ${theme.palette.divider}`,
-  },
-  '& .rct-tableCard': {
-    borderRadius: theme.spacing(1),
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    overflow: 'hidden',
-  },
-  '& .rct-tableHeader': {
-    backgroundColor: theme.palette.grey[800],
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    '& .MuiTableCell-head': {
-      color: theme.palette.common.gey,
-      fontWeight: 600,
-      fontSize: '0.875rem',
-    },
-  },
-  '& .rct-clientHeader': {
-    backgroundColor: theme.palette.grey[100],
-    borderBottom: `2px solid ${theme.palette.primary.main}`,
-    position: 'sticky',
-    top: '48px',
-    zIndex: 1,
-    '& .MuiTableCell-root': {
-      fontWeight: 700,
-      fontSize: '1rem',
-      color: '#333',
+const RootStyle = styled('div')(({ theme }) => {
+  const isLight = theme.palette.mode === 'light';
+
+  return {
+    backgroundColor: theme.palette.background.default,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    '& .rct-filterSection': {
+      marginBottom: theme.spacing(3),
       padding: theme.spacing(2),
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: theme.spacing(1),
+      border: `1px solid ${theme.palette.divider}`,
     },
-  },
-  '& .rct-modelRow': {
-    backgroundColor: theme.palette.background.paper,
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+    '& .rct-tableCard': {
+      borderRadius: theme.spacing(1),
+      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+      overflow: 'hidden',
     },
-    '&:nth-of-type(even)': {
-      backgroundColor: theme.palette.grey[50],
+    '& .rct-tableHeader': {
+      backgroundColor: theme.palette.grey[800],
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      '& .MuiTableCell-head': {
+        color: theme.palette.common.gey,
+        fontWeight: 600,
+        fontSize: '0.875rem',
+      },
     },
-  },
-  '& .rct-modelCell': {
-    paddingLeft: theme.spacing(4),
-    fontWeight: 500,
-    borderLeft: `3px solid ${theme.palette.primary.light}`,
-  },
-  '& .rct-numberCell': {
-    fontWeight: 600,
-    fontFamily: 'monospace',
-  },
-  '& .rct-totalCell': {
-    fontWeight: 700,
-    color: theme.palette.primary.main,
-  },
-  '& .rct-custoCell': {
-    fontWeight: 600,
-    fontFamily: 'monospace',
-    color: theme.palette.error.main,
-  },
-  '& .rct-vendaCell': {
-    fontWeight: 600,
-    fontFamily: 'monospace',
-    color: theme.palette.success.main,
-  },
-  '& .rct-lucroCell': {
-    fontWeight: 700,
-    fontFamily: 'monospace',
-    color: theme.palette.info.main,
-  },
-  '& .rct-searchButton': {
-    marginLeft: theme.spacing(2),
-  },
-  '& .rct-summaryInfo': {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.grey[50],
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    marginBottom: 0,
-  },
-  '& .rct-summaryItem': {
-    display: 'flex',
-    alignItems: 'center',
-    gap: theme.spacing(1),
-  },
-  '& .rct-summaryValue': {
-    fontWeight: 600,
-    color: theme.palette.primary.main,
-  },
-  '& .rct-clientIcon': {
-    marginRight: theme.spacing(1),
-    color: theme.palette.primary.main,
-  },
-}));
+    '& .rct-clientHeader': {
+      backgroundColor: isLight ? theme.palette.grey[100] : theme.palette.background.neutral,
+      borderBottom: `2px solid ${theme.palette.primary.main}`,
+      position: 'sticky',
+      top: '48px',
+      zIndex: 1,
+      '& .MuiTableCell-root': {
+        fontWeight: 700,
+        fontSize: '1rem',
+        color: isLight ? '#333' : theme.palette.text.primary,
+        padding: theme.spacing(2),
+      },
+    },
+    '& .rct-modelRow': {
+      backgroundColor: theme.palette.background.paper,
+      '&:hover': {
+        backgroundColor: theme.palette.action.hover,
+      },
+      '&:nth-of-type(even)': {
+        backgroundColor: isLight ? theme.palette.grey[50] : theme.palette.background.neutral,
+      },
+    },
+    '& .rct-modelCell': {
+      paddingLeft: theme.spacing(4),
+      fontWeight: 500,
+      borderLeft: `3px solid ${theme.palette.primary.light}`,
+    },
+    '& .rct-numberCell': {
+      fontWeight: 600,
+      fontFamily: 'monospace',
+    },
+    '& .rct-totalCell': {
+      fontWeight: 700,
+      color: theme.palette.primary.main,
+    },
+    '& .rct-custoCell': {
+      fontWeight: 600,
+      fontFamily: 'monospace',
+      color: theme.palette.error.main,
+    },
+    '& .rct-vendaCell': {
+      fontWeight: 600,
+      fontFamily: 'monospace',
+      color: theme.palette.success.main,
+    },
+    '& .rct-lucroCell': {
+      fontWeight: 700,
+      fontFamily: 'monospace',
+      color: theme.palette.info.main,
+    },
+    '& .rct-searchButton': {
+      marginLeft: theme.spacing(2),
+    },
+    '& .rct-summaryInfo': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: theme.spacing(2),
+      backgroundColor: isLight ? theme.palette.grey[50] : theme.palette.background.neutral,
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      marginBottom: 0,
+    },
+    '& .rct-summaryItem': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: theme.spacing(1),
+    },
+    '& .rct-summaryValue': {
+      fontWeight: 600,
+      color: theme.palette.primary.main,
+    },
+    '& .rct-clientIcon': {
+      marginRight: theme.spacing(1),
+      color: theme.palette.primary.main,
+    },
+  };
+});
 
 export default function RelatorioConsumoTokens() {
   const theme = useTheme();

@@ -50,6 +50,7 @@ import Scrollbar from '../../components/Scrollbar';
 import SearchNotFound from '../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import { FeedbackListHead, FeedbackListToolbar } from '../../components/_dashboard/feedback/list';
+import { border, surface, textSecondary, tint } from 'src/theme/modeColor';
 
 // ----------------------------------------------------------------------
 
@@ -122,10 +123,10 @@ const InlineEditCell = ({
         sx={{ 
           minWidth: 120,
           '& .MuiOutlinedInput-root': {
-            backgroundColor: getColor(value) === 'error' ? 'error.lighter' : 
-                           getColor(value) === 'warning' ? 'warning.lighter' : 
-                           getColor(value) === 'success' ? 'success.lighter' : 
-                           'grey.100'
+            backgroundColor: getColor(value) === 'error' ? tint('error') : 
+                           getColor(value) === 'warning' ? tint('warning') : 
+                           getColor(value) === 'success' ? tint('success') : 
+                           surface('grey.100')
           }
         }}
         slotProps={{
@@ -729,10 +730,10 @@ export default function AgentsFeedback() {
                   p: 2, 
                   overflowY: 'auto',
                   borderRight: '1px solid',
-                  borderColor: 'grey.200'
+                  borderColor: border('grey.200')
                 }}>
                   {/* Informações principais compactas */}
-                  <Box sx={{ p: 1.5, mb: 1.5, bgcolor: 'grey.50', borderRadius: 1 }}>
+                  <Box sx={{ p: 1.5, mb: 1.5, bgcolor: surface('grey.50'), borderRadius: 1 }}>
                     <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600, fontSize: '0.9rem' }}>
                       Informações do Feedback
                     </Typography>
@@ -925,10 +926,10 @@ export default function AgentsFeedback() {
                   </Typography>
                   <Box sx={{ 
                     p: 1, 
-                    bgcolor: 'grey.50', 
+                    bgcolor: surface('grey.50'), 
                     borderRadius: 1, 
                     border: '1px solid', 
-                    borderColor: 'grey.200',
+                    borderColor: border('grey.200'),
                     maxHeight: 300,
                     overflowY: 'auto'
                   }}>
@@ -958,7 +959,7 @@ export default function AgentsFeedback() {
                         bgcolor: 'red.100', 
                         borderRadius: 1, 
                         border: '1px solid', 
-                        borderColor: 'grey.200',
+                        borderColor: border('grey.200'),
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 1
@@ -982,7 +983,7 @@ export default function AgentsFeedback() {
                         bgcolor: 'green.100', 
                         borderRadius: 1, 
                         border: '1px solid', 
-                        borderColor: 'grey.200',
+                        borderColor: border('grey.200'),
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 1
@@ -1010,10 +1011,10 @@ export default function AgentsFeedback() {
                     </Typography>
                     <Box sx={{ 
                       p: 1, 
-                      bgcolor: 'grey.50', 
+                      bgcolor: surface('grey.50'), 
                       borderRadius: 1, 
                       border: '1px solid', 
-                      borderColor: 'grey.200' 
+                      borderColor: border('grey.200') 
                     }}>
                       <Typography variant="caption" sx={{ fontSize: '0.75rem' }}>
                         {selectedFeedback.notes}
@@ -1140,7 +1141,7 @@ export default function AgentsFeedback() {
                               sx={{
                                 fontSize: '0.65rem',
                                 fontWeight: 500,
-                                color: '#666',
+                                color: textSecondary('#666'),
                                 mb: 0.25,
                                 px: 0.5
                               }}

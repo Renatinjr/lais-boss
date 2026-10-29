@@ -15,6 +15,28 @@ npm run lint
 Next.js 16 (App Router, Turbopack), React 19, MUI 9. API endpoints live in `src/config.js`.
 Optional env vars use the `NEXT_PUBLIC_` prefix (e.g. `NEXT_PUBLIC_GA_MEASUREMENT_ID`).
 
+## Production (PM2)
+
+`ecosystem.config.cjs` runs `next start` under PM2 in cluster mode (2 instances by default) on port 3000.
+
+```sh
+npm install -g pm2                     # once per server
+npm ci && npm run build
+pm2 start ecosystem.config.cjs
+pm2 save && pm2 startup                # start again after a reboot (run the command it prints)
+```
+
+To deploy a new version: `git pull && npm ci && npm run build && pm2 reload ecosystem.config.cjs` (no downtime).
+
+| Env var | Default | |
+|---|---|---|
+| `PORT` | `3000` | port to listen on |
+| `WEB_CONCURRENCY` | `2` | number of instances |
+| `HOSTNAME_BIND` | `0.0.0.0` | interface to bind (`127.0.0.1` when behind nginx on the same host) |
+
+Logs go to `logs/out.log` and `logs/error.log` (`pm2 logs lais-boss` to follow them).
+`NEXT_PUBLIC_*` variables are baked in at build time, so set them before `npm run build`.
+
 ## Structure
 
 - `src/app/` holds the routes. Each `page.js` renders a view from `src/views/`. `dashboard/layout.js` wraps every dashboard page in `AuthGuard` and the dashboard layout.

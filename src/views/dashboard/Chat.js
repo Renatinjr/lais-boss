@@ -48,6 +48,7 @@ import actionTransformarChatsWppBusiness from 'src/actions/admin/actionTransform
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from 'src/hooks/useAuth';
+import { border, surface, tint } from 'src/theme/modeColor';
 
 export default function Chat() {
   const { themeStretch } = useSettings();
@@ -586,10 +587,10 @@ export default function Chat() {
           {clienteSelecionadoPod && servidorSelecionadoPod && (
                <Box sx={{ 
                  p: 3, 
-                 bgcolor: 'grey.50', 
+                 bgcolor: surface('grey.50'), 
                  borderRadius: 2, 
                  border: '1px solid',
-                 borderColor: 'grey.200'
+                 borderColor: border('grey.200')
                }}>
                  <Typography variant="h6" color="primary" sx={{ mb: 2, fontWeight: 'bold' }}>
                    Resumo da Alteração
@@ -751,7 +752,7 @@ export default function Chat() {
                 htmlInput: { maxLength: 6 }
               }}
             />
-            <Box sx={{ border: '1px solid', borderColor: metaTransformarChats ? 'primary.main' : 'grey.300', borderRadius: 1.5, p: 1.5, bgcolor: metaTransformarChats ? 'primary.lighter' : 'transparent', transition: 'all 0.2s' }}>
+            <Box sx={{ border: '1px solid', borderColor: metaTransformarChats ? 'primary.main' : border('grey.300'), borderRadius: 1.5, p: 1.5, bgcolor: metaTransformarChats ? tint('primary') : 'transparent', transition: 'all 0.2s' }}>
               <Stack direction="row" spacing={1} sx={{
                 alignItems: "flex-start"
               }}>
@@ -795,8 +796,8 @@ export default function Chat() {
                     code: `curl --location --globoff --request POST \\\n  'https://graph.facebook.com/v24.0/${metaWabaId || '<WABA-ID>'}/subscribed_apps' \\\n  --header 'Authorization: Bearer $LAIS_SYSTEM_USER_TOKEN'`
                   }
                 ].map(({ label, code }) => (
-                  <Box key={label} sx={{ border: '1px solid', borderColor: 'grey.300', borderRadius: 1.5, overflow: 'hidden' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 1.5, py: 0.5, bgcolor: 'grey.100', borderBottom: '1px solid', borderColor: 'grey.300' }}>
+                  <Box key={label} sx={{ border: '1px solid', borderColor: border('grey.300'), borderRadius: 1.5, overflow: 'hidden' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 1.5, py: 0.5, bgcolor: surface('grey.100'), borderBottom: '1px solid', borderColor: border('grey.300') }}>
                       <Typography variant="caption" sx={{ fontWeight: 'bold', color: 'text.secondary' }}>{label}</Typography>
                       <Tooltip title="Copiar">
                         <IconButton
