@@ -12,7 +12,6 @@ import {
     MenuItem,
     Button
 } from '@mui/material';
-import { LoadingButton } from '@material-ui/lab';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import Iconify from 'src/components/Iconify';
@@ -64,7 +63,9 @@ export default function ActionsChannel({data}) {
 
 
     return (
-        <Stack direction="row" spacing={1} alignItems={"center"}>
+        <Stack direction="row" spacing={1} sx={{
+            alignItems: "center"
+        }}>
             <div>
                 <Button
                     id="basic-button"
@@ -80,8 +81,10 @@ export default function ActionsChannel({data}) {
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
+                    slotProps={{
+                        list: {
+                            'aria-labelledby': 'basic-button',
+                        }
                     }}
                 >
                     <MenuItem onClick={handleCloseSession}>Fechar Sessao</MenuItem>
@@ -90,5 +93,5 @@ export default function ActionsChannel({data}) {
                 </Menu>
             </div>
         </Stack>
-    )
+    );
 }

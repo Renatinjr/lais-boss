@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { paramCase } from 'change-case';
+import { kebabCase } from 'change-case';
 import { useRef, useState } from 'react';
 import editFill from '@iconify/icons-eva/edit-fill';
-import { Link as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 import trash2Outline from '@iconify/icons-eva/trash-2-outline';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
-import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 
@@ -52,7 +52,9 @@ export default function ClientesMenuActions({ onStartSession, onCloseSession }) 
           <ListItemIcon>
           <BsXCircle color="#f03" />
           </ListItemIcon>
-          <ListItemText primary="Fechar Sessão" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Fechar Sessão" slotProps={{
+            primary: { variant: 'body2' }
+          }} />
         </MenuItem>
 
         <MenuItem
@@ -62,7 +64,9 @@ export default function ClientesMenuActions({ onStartSession, onCloseSession }) 
           <ListItemIcon>
               <FiPlayCircle color="#008000" />
           </ListItemIcon>
-          <ListItemText primary="Iniciar Sessão" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Iniciar Sessão" slotProps={{
+            primary: { variant: 'body2' }
+          }} />
         </MenuItem>
       </Menu>
     </>

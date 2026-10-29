@@ -1,8 +1,8 @@
 import { Icon } from '@iconify/react';
-import { visuallyHidden } from '@material-ui/utils';
+import { visuallyHidden } from '@mui/utils';
 import PropTypes from 'prop-types';
 // material
-import { TableSortLabel, TableRow, TableCell, TableHead, Box, Checkbox } from '@material-ui/core';
+import { TableSortLabel, TableRow, TableCell, TableHead, Box, Checkbox } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

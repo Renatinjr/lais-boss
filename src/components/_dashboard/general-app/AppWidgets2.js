@@ -3,8 +3,8 @@ import { Icon } from '@iconify/react';
 import ReactApexChart from 'react-apexcharts';
 import emailFill from '@iconify/icons-eva/email-fill';
 // material
-import { useTheme, styled } from '@material-ui/core/styles';
-import { Card, Box, Typography } from '@material-ui/core';
+import { useTheme, styled } from '@mui/material/styles';
+import { Card, Box, Typography } from '@mui/material';
 // utils
 import { fNumber } from '../../../utils/formatNumber';
 //

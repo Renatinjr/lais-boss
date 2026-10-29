@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 
 import { useMemo } from 'react';
 // material
-import { CssBaseline } from '@material-ui/core';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 // hooks
 import useSettings from '../hooks/useSettings';
+import useThemeMode from '../hooks/useThemeMode';
 //
 import shape from './shape';
 import palette from './palette';
@@ -22,8 +23,9 @@ ThemeConfig.propTypes = {
 };
 
 export default function ThemeConfig({ children }) {
-  const { themeMode, themeDirection } = useSettings();
-  const isLight = themeMode === 'light';
+  const { themeDirection } = useSettings();
+  const { resolvedMode } = useThemeMode();
+  const isLight = resolvedMode === 'light';
 
   const themeOptions = useMemo(
     () => ({
@@ -42,12 +44,10 @@ export default function ThemeConfig({ children }) {
   theme.components = componentsOverride(theme);
 
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <GlobalStyles />
-        {children}
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
   );
 }

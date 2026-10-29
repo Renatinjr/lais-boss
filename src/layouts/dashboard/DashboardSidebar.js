@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import RouterLink from 'next/link';
+import { usePathname } from 'next/navigation';
 // material
-import { alpha, styled } from '@material-ui/core/styles';
-import { Box, Link, Stack, Button, Drawer, Tooltip, Typography, CardActionArea } from '@material-ui/core';
+import { alpha, styled } from '@mui/material/styles';
+import { Box, Link, Stack, Button, Drawer, Tooltip, Typography, CardActionArea } from '@mui/material';
 // hooks
 import useAuth from '../../hooks/useAuth';
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
@@ -93,7 +94,7 @@ DashboardSidebar.propTypes = {
 };
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const { isCollapse, collapseClick, collapseHover, onToggleCollapse, onHoverEnter, onHoverLeave } = useCollapseDrawer();
   const [open, setOpen] = useState(false);
 
@@ -152,8 +153,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         <Drawer
           open={isOpenSidebar}
           onClose={onCloseSidebar}
-          PaperProps={{
-            sx: { width: DRAWER_WIDTH }
+          slotProps={{
+            paper: {
+              sx: { width: DRAWER_WIDTH }
+            }
           }}
         >
           {renderContent}
@@ -166,20 +169,22 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
           variant="persistent"
           onMouseEnter={onHoverEnter}
           onMouseLeave={onHoverLeave}
-          PaperProps={{
-            sx: {
-              width: DRAWER_WIDTH,
-              bgcolor: 'background.default',
-              ...(isCollapse && {
-                width: COLLAPSE_WIDTH
-              }),
-              ...(collapseHover && {
-                borderRight: 0,
-                backdropFilter: 'blur(6px)',
-                WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-                boxShadow: (theme) => theme.customShadows.z20,
-                bgcolor: (theme) => alpha(theme.palette.background.default, 0.88)
-              })
+          slotProps={{
+            paper: {
+              sx: {
+                width: DRAWER_WIDTH,
+                bgcolor: 'background.default',
+                ...(isCollapse && {
+                  width: COLLAPSE_WIDTH
+                }),
+                ...(collapseHover && {
+                  borderRight: 0,
+                  backdropFilter: 'blur(6px)',
+                  WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
+                  boxShadow: (theme) => theme.customShadows.z20,
+                  bgcolor: (theme) => alpha(theme.palette.background.default, 0.88)
+                })
+              }
             }
           }}
         >

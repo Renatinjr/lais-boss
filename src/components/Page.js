@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { forwardRef, useEffect, useCallback } from 'react';
 // material
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 // utils
 import track from '../utils/analytics';
 
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   const sendPageViewEvent = useCallback(() => {
     track.pageview({
@@ -25,9 +24,7 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
 
   return (
     <Box ref={ref} {...other}>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
+      <title>{title}</title>
       {children}
     </Box>
   );

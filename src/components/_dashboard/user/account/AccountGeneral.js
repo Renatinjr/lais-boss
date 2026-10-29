@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useSnackbar } from 'notistack5';
+import { useSnackbar } from 'notistack';
 import { useCallback } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
@@ -12,9 +12,9 @@ import {
   TextField,
   FormControlLabel,
   Typography,
-  FormHelperText
-} from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
+  FormHelperText,
+  Button
+} from '@mui/material';
 // hooks
 import useAuth from '../../../../hooks/useAuth';
 import useIsMountedRef from '../../../../hooks/useIsMountedRef';
@@ -87,10 +87,14 @@ export default function AccountGeneral() {
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={4}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 4
+            }}>
             <Card sx={{ py: 10, px: 3, textAlign: 'center' }}>
               <UploadAvatar
-                accept="image/*"
+                accept={{ 'image/*': [] }}
                 file={values.photoURL}
                 maxSize={3145728}
                 onDrop={handleDrop}
@@ -125,7 +129,11 @@ export default function AccountGeneral() {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={8}>
+          <Grid
+            size={{
+              xs: 12,
+              md: 8
+            }}>
             <Card sx={{ p: 3 }}>
               <Stack spacing={{ xs: 2, md: 3 }}>
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
@@ -145,9 +153,11 @@ export default function AccountGeneral() {
                     label="Country"
                     placeholder="Country"
                     {...getFieldProps('country')}
-                    SelectProps={{ native: true }}
                     error={Boolean(touched.country && errors.country)}
                     helperText={touched.country && errors.country}
+                    slotProps={{
+                      select: { native: true }
+                    }}
                   >
                     <option value="" />
                     {countries.map((option) => (
@@ -168,9 +178,9 @@ export default function AccountGeneral() {
               </Stack>
 
               <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-                <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                <Button type="submit" variant="contained" loading={isSubmitting}>
                   Save Changes
-                </LoadingButton>
+                </Button>
               </Box>
             </Card>
           </Grid>

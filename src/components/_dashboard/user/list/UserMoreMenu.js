@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { paramCase } from 'change-case';
+import { kebabCase } from 'change-case';
 import { useRef, useState } from 'react';
 import editFill from '@iconify/icons-eva/edit-fill';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
-import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
-import { Link as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 import CloseIcon from '@mui/icons-material/Close';
@@ -76,7 +76,7 @@ export default function UserMoreMenu({ onDelete, userId, onBlock, onCallback, us
       <IconButton ref={ref} onClick={() => setIsOpen(true)}>
         <Icon icon={moreVerticalFill} width={20} height={20} />
       </IconButton>
-  
+
       <Menu
         open={isOpen}
         anchorEl={ref.current}
@@ -89,27 +89,33 @@ export default function UserMoreMenu({ onDelete, userId, onBlock, onCallback, us
       >
         <MenuItem
           component={RouterLink}
-          to={`${PATH_DASHBOARD.plataforma.root}/${paramCase(userName)}/editar`}
+          href={`${PATH_DASHBOARD.plataforma.root}/${kebabCase(userName)}/editar`}
           sx={{ color: 'text.secondary' }}
         >
           <ListItemIcon>
             <Icon icon={editFill} width={24} height={24} />
           </ListItemIcon>
-          <ListItemText primary="Editar" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Editar" slotProps={{
+            primary: { variant: 'body2' }
+          }} />
         </MenuItem>
   
         <MenuItem onClick={() => handleBlock(true)} sx={{ color: 'text.secondary' }}>
           <ListItemIcon>
             <DoDisturbIcon width={24} height={24} />
           </ListItemIcon>
-          <ListItemText primary="Bloquear" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Bloquear" slotProps={{
+            primary: { variant: 'body2' }
+          }} />
         </MenuItem>
   
         <MenuItem onClick={() => handleBlock(false)} sx={{ color: 'text.secondary' }}>
           <ListItemIcon>
             <TaskAltIcon width={24} height={24} />
           </ListItemIcon>
-          <ListItemText primary="Desbloquear" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Desbloquear" slotProps={{
+            primary: { variant: 'body2' }
+          }} />
         </MenuItem>
         {/* <MenuItem onClick={() => handleDeleteUser(userName)} sx={{ color: 'text.secondary' }}>
   <ListItemIcon>

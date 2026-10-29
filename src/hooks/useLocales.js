@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 // material
-import { enUS, deDE, frFR } from '@material-ui/core/locale';
+import { enUS, deDE, frFR } from '@mui/material/locale';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +28,7 @@ const LANGS = [
 
 export default function useLocales() {
   const { i18n, t: translate } = useTranslation();
-  const langStorage = localStorage.getItem('i18nextLng');
+  const langStorage = typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : null;
   const currentLang = LANGS.find((_lang) => _lang.value === langStorage) || LANGS[1];
 
   const handleChangeLanguage = (newlang) => {

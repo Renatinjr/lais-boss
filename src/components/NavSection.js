@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom';
+import RouterLink from 'next/link';
+import { isActivePath } from 'src/routes/utils';
+import { usePathname } from 'next/navigation';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, List, Collapse, ListItemText, ListItemIcon, ListSubheader, ListItemButton } from '@material-ui/core';
+import { alpha, useTheme, styled } from '@mui/material/styles';
+import { Box, List, Collapse, ListItemText, ListItemIcon, ListSubheader, ListItemButton } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -115,7 +117,7 @@ function NavItem({ item, active, isShow }) {
                   <ListItemStyle
                     key={title}
                     component={RouterLink}
-                    to={path}
+                    href={path}
                     sx={{
                       ...(isActiveSub && activeSubStyle)
                     }}
@@ -153,7 +155,7 @@ function NavItem({ item, active, isShow }) {
   return (
     <ListItemStyle
       component={RouterLink}
-      to={path}
+      href={path}
       sx={{
         ...(isActiveRoot && activeRootStyle)
       }}
@@ -175,8 +177,8 @@ NavSection.propTypes = {
 };
 
 export default function NavSection({ navConfig, isShow = false, ...other }) {
-  const { pathname } = useLocation();
-  const match = (path) => (path ? !!matchPath({ path, end: false }, pathname) : false);
+  const pathname = usePathname();
+  const match = (path) => (path ? isActivePath(path, pathname) : false);
 
   return (
     <Box {...other}>

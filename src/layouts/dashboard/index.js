@@ -1,7 +1,8 @@
+'use client';
+
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 // material
-import { styled, useTheme } from '@material-ui/core/styles';
+import { styled, useTheme } from '@mui/material/styles';
 // hooks
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 //
@@ -36,7 +37,7 @@ const MainStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function DashboardLayout() {
+export default function DashboardLayout({ children }) {
   const theme = useTheme();
   const { collapseClick } = useCollapseDrawer();
   const [open, setOpen] = useState(false);
@@ -60,7 +61,7 @@ export default function DashboardLayout() {
 
 
       <MainStyle>
-        <Outlet />
+        {children}
       </MainStyle>
 
 

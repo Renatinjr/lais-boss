@@ -1,6 +1,8 @@
-import { Link as RouterLink, Outlet } from 'react-router-dom';
+'use client';
+
+import RouterLink from 'next/link';
 // material
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 // components
 import Logo from '../components/Logo';
 
@@ -20,15 +22,15 @@ const HeaderStyle = styled('header')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function LogoOnlyLayout() {
+export default function LogoOnlyLayout({ children }) {
   return (
     <>
       <HeaderStyle>
-        <RouterLink to="/">
+        <RouterLink href="/">
           <Logo />
         </RouterLink>
       </HeaderStyle>
-      <Outlet />
+      {children}
     </>
   );
 }

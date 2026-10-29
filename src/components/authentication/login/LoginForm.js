@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
-import { useSnackbar } from 'notistack5';
-import {useNavigate } from "react-router-dom";
+import { useSnackbar } from 'notistack';
 
 import React from 'react'
 
@@ -14,13 +13,13 @@ import {
   IconButton,
   InputAdornment,
   FormControlLabel,
-  Grid
-} from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
+  Grid,
+  Button
+} from '@mui/material';
 
 import { Icon } from '@iconify/react';
 
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 import closeFill from '@iconify/icons-eva/close-fill';
 
 // hooks
@@ -34,7 +33,6 @@ import { MIconButton } from '../../@material-extend';
 import loginAdmin from 'src/actions/admin/login';
 
 export default function LoginForm() {
-  const navigate = useNavigate ();
   const { login } = useAuth();
   const isMountedRef = useIsMountedRef();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -105,9 +103,9 @@ async function onLogin() {
         </Stack>
 
 
-        <LoadingButton onClick={onLogin} sx={{mt:2}} loading={loading} fullWidth size="large" variant="contained" >
+        <Button onClick={onLogin} sx={{mt:2}} loading={loading} fullWidth size="large" variant="contained" >
           Login
-        </LoadingButton>
+        </Button>
 </Stack>
   );
 }

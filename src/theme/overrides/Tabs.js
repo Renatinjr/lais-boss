@@ -27,10 +27,6 @@ export default function Tabs(theme) {
             marginRight: theme.spacing(1)
           }
         },
-        wrapper: {
-          flexDirection: 'row',
-          whiteSpace: 'nowrap'
-        },
         textColorInherit: {
           opacity: 1,
           color: theme.palette.text.secondary

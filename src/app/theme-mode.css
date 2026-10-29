@@ -1,0 +1,8 @@
+/* Page background before the client-only app mounts; matches background.default in src/theme/palette.js */
+html[data-theme='light'] body {
+  background-color: #ffffff;
+}
+
+html[data-theme='dark'] body {
+  background-color: #161c24;
+}

@@ -20,7 +20,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
   position: 'fixed',
   zIndex: theme.zIndex.appBar,
   padding: theme.spacing(1, 0),
-  backgroundColor: '#ededed',
+  backgroundColor: theme.palette.mode === 'light' ? '#ededed' : theme.palette.grey[800],
 }));
 
 // ----------------------------------------------------------------------
@@ -29,7 +29,9 @@ function NavbarHorizontal({user}) {
   return (
     <RootStyle>
       <Container maxWidth={false}>
-        <Stack direction="row" alignItems={"center"} spacing={2}>
+        <Stack direction="row" spacing={2} sx={{
+          alignItems: "center"
+        }}>
         <NavSectionHorizontal user={user} navConfig={navConfig} />
         <AccountPopover />
         </Stack>

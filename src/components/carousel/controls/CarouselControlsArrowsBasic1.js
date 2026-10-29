@@ -6,8 +6,8 @@ import arrowRightFill from '@iconify/icons-eva/arrow-right-fill';
 import roundKeyboardArrowLeft from '@iconify/icons-ic/round-keyboard-arrow-left';
 import roundKeyboardArrowRight from '@iconify/icons-ic/round-keyboard-arrow-right';
 // material
-import { useTheme, styled } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { useTheme, styled } from '@mui/material/styles';
+import { Box } from '@mui/material';
 //
 import { MIconButton } from '../../@material-extend';
 

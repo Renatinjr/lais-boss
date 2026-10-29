@@ -1,4 +1,4 @@
-import { matchPath } from 'react-router-dom';
+import { isActivePath } from 'src/routes/utils';
 
 // ----------------------------------------------------------------------
 
@@ -10,5 +10,5 @@ export function isExternalLink(path) {
 }
 
 export function getActive(path, pathname) {
-  return path ? !!matchPath({ path, end: false }, pathname) : false;
+  return path ? isActivePath(path, pathname) : false;
 }

@@ -101,11 +101,9 @@ function SetColor(themeColor) {
 }
 
 const initialState = {
-  themeMode: 'light',
   themeDirection: 'ltr',
   themeColor: 'purple',
   themeStretch: true,
-  onChangeMode: () => {},
   onChangeDirection: () => {},
   onChangeColor: () => {},
   onToggleStretch: () => {},
@@ -121,18 +119,10 @@ SettingsProvider.propTypes = {
 
 function SettingsProvider({ children }) {
   const [settings, setSettings] = useLocalStorage('settings', {
-    themeMode: initialState.themeMode,
     themeDirection: initialState.themeDirection,
     themeColor: initialState.themeColor,
     themeStretch: initialState.themeStretch
   });
-
-  const onChangeMode = (event) => {
-    setSettings({
-      ...settings,
-      themeMode: event.target.value
-    });
-  };
 
   const onChangeDirection = (event) => {
     setSettings({
@@ -159,8 +149,6 @@ function SettingsProvider({ children }) {
     <SettingsContext.Provider
       value={{
         ...settings,
-        // Mode
-        onChangeMode,
         // Direction
         onChangeDirection,
         // Color

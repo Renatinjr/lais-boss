@@ -12,7 +12,7 @@ export default function Chip(theme) {
 
       styleOverrides: {
         colorDefault: {
-          '& .MuiChip-avatarMedium, .MuiChip-avatarSmall': {
+          '&.MuiChip-sizeMedium > .MuiChip-avatar, &.MuiChip-sizeSmall > .MuiChip-avatar': {
             color: theme.palette.text.secondary
           }
         },
@@ -25,22 +25,17 @@ export default function Chip(theme) {
             borderColor: theme.palette.secondary.main
           }
         },
-        //
-        avatarColorInfo: {
-          color: theme.palette.info.contrastText,
-          backgroundColor: theme.palette.info.dark
-        },
-        avatarColorSuccess: {
-          color: theme.palette.success.contrastText,
-          backgroundColor: theme.palette.success.dark
-        },
-        avatarColorWarning: {
-          color: theme.palette.warning.contrastText,
-          backgroundColor: theme.palette.warning.dark
-        },
-        avatarColorError: {
-          color: theme.palette.error.contrastText,
-          backgroundColor: theme.palette.error.dark
+        // MUI 9 removed the avatarColor* slots; style the avatar per chip color instead
+        root: {
+          variants: ['info', 'success', 'warning', 'error'].map((color) => ({
+            props: { color },
+            style: {
+              '& .MuiChip-avatar': {
+                color: theme.palette[color].contrastText,
+                backgroundColor: theme.palette[color].dark
+              }
+            }
+          }))
         }
       }
     }

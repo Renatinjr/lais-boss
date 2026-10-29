@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { noCase } from 'change-case';
 import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 import { Icon } from '@iconify/react';
 import bellFill from '@iconify/icons-eva/bell-fill';
 import clockFill from '@iconify/icons-eva/clock-fill';
 import doneAllFill from '@iconify/icons-eva/done-all-fill';
 // material
-import { alpha } from '@material-ui/core/styles';
+import { alpha } from '@mui/material/styles';
 import {
   Box,
   List,
@@ -21,7 +21,7 @@ import {
   ListSubheader,
   ListItemAvatar,
   ListItemButton
-} from '@material-ui/core';
+} from '@mui/material';
 // utils
 import mockData from '../../utils/mock-data';
 import { fToNow } from '../../utils/formatTime';
@@ -115,7 +115,7 @@ function NotificationItem({ notification }) {
 
   return (
     <ListItemButton
-      to="#"
+      href="#"
       disableGutters
       component={RouterLink}
       sx={{
@@ -243,7 +243,7 @@ export default function NotificationsPopover() {
         <Divider />
 
         <Box sx={{ p: 1 }}>
-          <Button fullWidth disableRipple component={RouterLink} to="#">
+          <Button fullWidth disableRipple component={RouterLink} href="#">
             View All
           </Button>
         </Box>

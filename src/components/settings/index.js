@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import closeFill from '@iconify/icons-eva/close-fill';
 import options2Fill from '@iconify/icons-eva/options-2-fill';
 // material
-import { Box, Backdrop, Paper, Tooltip, Divider, Typography, Stack } from '@material-ui/core';
+import { Box, Backdrop, Paper, Tooltip, Divider, Typography, Stack } from '@mui/material';
 //
 import Scrollbar from '../Scrollbar';
 import { MIconButton } from '../@material-extend';
@@ -57,9 +57,9 @@ export default function Settings() {
             mt: -3,
             left: -44,
             top: '50%',
-            color: 'grey.800',
+            color: 'text.primary',
             position: 'absolute',
-            bgcolor: 'common.white',
+            bgcolor: 'background.paper',
             borderRadius: '24px 0 16px 24px',
             boxShadow: (theme) => theme.customShadows.z12
           }}
@@ -91,7 +91,15 @@ export default function Settings() {
             ...(open && { width: DRAWER_WIDTH })
           }}
         >
-          <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ py: 2, pr: 1, pl: 2.5 }}>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "space-between",
+              py: 2,
+              pr: 1,
+              pl: 2.5
+            }}>
             <Typography variant="subtitle1">Configurar</Typography>
             <MIconButton onClick={handleClose}>
               <Icon icon={closeFill} width={20} height={20} />

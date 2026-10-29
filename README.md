@@ -1,19 +1,28 @@
 # lais-boss (Boss admin panel)
 
-Reconstructed from the production build in `build/` using its source maps.
+Reconstructed from the production build in `build/` using its source maps, then migrated from Create React App to Next.js.
 
 ## Running
 
 ```sh
-npm install --legacy-peer-deps
-npm start        # dev server
-npm run build    # production build (writes to build/ - move the original first if you still need it)
+npm install
+npm run dev      # dev server on http://localhost:3000
+npm run build    # production build (.next/)
+npm start        # serve the production build
+npm run lint
 ```
 
-Create React App 4 (webpack 4), React 17. The scripts set `NODE_OPTIONS=--openssl-legacy-provider` so it runs on modern Node.
-API endpoints live in `src/config.js`.
+Next.js 16 (App Router, Turbopack), React 19, MUI 9. API endpoints live in `src/config.js`.
+Optional env vars use the `NEXT_PUBLIC_` prefix (e.g. `NEXT_PUBLIC_GA_MEASUREMENT_ID`).
 
-## How it was reconstructed
+## Structure
+
+- `src/app/` holds the routes. Each `page.js` renders a view from `src/views/`. `dashboard/layout.js` wraps every dashboard page in `AuthGuard` and the dashboard layout.
+- `src/app/providers.js` holds Redux, the theme, auth, settings and snackbars. It renders on the client only, because the app reads auth, settings and locale from `localStorage` while rendering (as the CRA single-page app did).
+- The old react-router `<Navigate>` index routes are redirects in `next.config.mjs`.
+- `src/views/` was `src/pages/` in the CRA app. It was renamed so Next doesn't treat it as Pages Router routes.
+
+## How it was reconstructed (original CRA version, see the first commit)
 
 - `src/` comes from `sourcesContent` in the source maps of the build listed in `build/asset-manifest.json` (`main.70cbb139`). Those files are the exact original sources.
 - `build/` also contains leftover files from about 30 older builds. They were only used to fill gaps (see below). `main.2620c094.js` is from a different app (the chat client), and only a few small API helpers were taken from it.

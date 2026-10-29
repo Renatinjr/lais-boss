@@ -9,7 +9,6 @@ import {
   Alert,
   Typography,
 } from '@mui/material';
-import { LoadingButton } from '@material-ui/lab';
 import v2_actionImportarContatos from 'src/actions/v2/clientes/v2_importarContatos';
 import { useDropzone } from 'react-dropzone';
 import { useState } from 'react';
@@ -76,7 +75,7 @@ export default function ModalImportarUsuarios({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: '.csv',
+    accept: { 'text/csv': ['.csv'] },
   });
 
 
@@ -171,14 +170,14 @@ export default function ModalImportarUsuarios({
         >
           Cancelar
         </Button>
-        <LoadingButton
+        <Button
           onClick={handleImportUsers}
           variant="contained"
           disabled={!csvFile}
           loading={loading}
         >
           Importar
-        </LoadingButton>
+        </Button>
       </DialogActions>
     </Dialog>
   );

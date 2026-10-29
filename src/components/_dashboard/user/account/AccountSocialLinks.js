@@ -1,13 +1,12 @@
 import { Icon } from '@iconify/react';
-import { useSnackbar } from 'notistack5';
+import { useSnackbar } from 'notistack';
 
 import twitterFill from '@iconify/icons-eva/twitter-fill';
 import linkedinFill from '@iconify/icons-eva/linkedin-fill';
 import facebookFill from '@iconify/icons-eva/facebook-fill';
 import instagramFilled from '@iconify/icons-ant-design/instagram-filled';
 // material
-import { Stack, Card, TextField, InputAdornment } from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
+import { Stack, Card, TextField, InputAdornment, Button } from '@mui/material';
 // redux
 import { useSelector } from '../../../../redux/store';
 // utils
@@ -46,23 +45,23 @@ export default function AccountSocialLinks() {
   return (
     <Card sx={{ p: 3 }}>
 
- 
-          <Stack spacing={3} alignItems="flex-end">
-            {SOCIAL_LINKS_OPTIONS.map((link) => (
-              <div>
-              <TextField>Teste</TextField>
-              <TextField>Teste</TextField>
-              </div>
-            ))}
+      <Stack spacing={3} sx={{
+        alignItems: "flex-end"
+      }}>
+        {SOCIAL_LINKS_OPTIONS.map((link) => (
+          <div>
+          <TextField>Teste</TextField>
+          <TextField>Teste</TextField>
+          </div>
+        ))}
 
-            <LoadingButton type="submit" variant="contained" 
-            //loading={isSubmitting}
-            
-            >
-              Save Changes
-            </LoadingButton>
-          </Stack>
-       
+        <Button type="submit" variant="contained" 
+        //loading={isSubmitting}
+        
+        >
+          Save Changes
+        </Button>
+      </Stack>
 
     </Card>
   );

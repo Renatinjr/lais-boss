@@ -1,21 +1,24 @@
 import { Icon } from '@iconify/react';
 import moonFill from '@iconify/icons-eva/moon-fill';
 import sunFill from '@iconify/icons-eva/sun-fill';
+import monitorFill from '@iconify/icons-eva/monitor-fill';
 // material
-import { Box, Grid, Radio, Paper, RadioGroup, CardActionArea, FormControlLabel } from '@material-ui/core';
+import { Box, Grid, Radio, Paper, RadioGroup, CardActionArea, FormControlLabel } from '@mui/material';
 // hooks
-import useSettings from '../../hooks/useSettings';
+import useThemeMode from '../../hooks/useThemeMode';
 
 // ----------------------------------------------------------------------
 
+const MODE_ICONS = { light: sunFill, dark: moonFill, system: monitorFill };
+
 export default function SettingMode() {
-  const { themeMode, onChangeMode } = useSettings();
+  const { mode: themeMode, setMode } = useThemeMode();
 
   return (
-    <RadioGroup name="themeMode" value={themeMode} onChange={onChangeMode}>
+    <RadioGroup name="themeMode" value={themeMode} onChange={(event) => setMode(event.target.value)}>
       <Grid container spacing={2.5} dir="ltr">
-        {['light', 'dark'].map((mode, index) => (
-          <Grid item xs={6} key={mode}>
+        {['light', 'dark', 'system'].map((mode) => (
+          <Grid key={mode} size={4}>
             <Paper
               sx={{
                 width: 1,
@@ -23,6 +26,10 @@ export default function SettingMode() {
                 overflow: 'hidden',
                 position: 'relative',
                 bgcolor: mode === 'dark' ? 'grey.900' : 'common.white',
+                ...(mode === 'system' && {
+                  background: (theme) =>
+                    `linear-gradient(135deg, ${theme.palette.common.white} 50%, ${theme.palette.grey[900]} 50%)`
+                }),
                 ...(themeMode === mode && {
                   boxShadow: (theme) => theme.customShadows.z12
                 })
@@ -40,7 +47,7 @@ export default function SettingMode() {
                     })
                   }}
                 >
-                  <Icon icon={index === 0 ? sunFill : moonFill} width={24} height={24} />
+                  <Icon icon={MODE_ICONS[mode]} width={24} height={24} />
                 </Box>
 
                 <FormControlLabel

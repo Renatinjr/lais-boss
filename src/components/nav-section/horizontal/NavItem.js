@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-import { NavLink as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 // @mui
 import { Box, Link } from '@mui/material';
 // config
@@ -28,7 +28,7 @@ export const NavItemRoot = forwardRef(({ item, active, open, onMouseEnter, onMou
       <NavItemContent icon={icon} title={title} children={children} />
     </ListItemStyle>
   ) : (
-    <ListItemStyle component={RouterLink} to={path} activeRoot={active}>
+    <ListItemStyle component={RouterLink} href={path} activeRoot={active}>
       <NavItemContent icon={icon} title={title} children={children} />
     </ListItemStyle>
   );
@@ -73,7 +73,7 @@ export const NavItemSub = forwardRef(({ item, active, open, onMouseEnter, onMous
       <NavItemContent icon={icon} title={title} children={children} subItem />
     </ListItemStyle>
   ) : (
-    <ListItemStyle disableRipple component={RouterLink} to={path} activeSub={active} subItem>
+    <ListItemStyle disableRipple component={RouterLink} href={path} activeSub={active} subItem>
       <NavItemContent icon={icon} title={title} children={children} subItem />
     </ListItemStyle>
   );

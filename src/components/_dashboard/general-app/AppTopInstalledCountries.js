@@ -5,8 +5,8 @@ import appleFilled from '@iconify/icons-ant-design/apple-filled';
 import windowsFilled from '@iconify/icons-ant-design/windows-filled';
 import androidFilled from '@iconify/icons-ant-design/android-filled';
 // material
-import { styled } from '@material-ui/core/styles';
-import { Box, Card, CardHeader, Typography, Stack } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
+import { Box, Card, CardHeader, Typography, Stack } from '@mui/material';
 // utils
 import mockData from '../../../utils/mock-data';
 //
@@ -29,7 +29,12 @@ const MOCK_INSTALLED = ['de', 'en', 'fr', 'kr', 'us'].map((country, index) => ({
   flag: `/static/icons/ic_flag_${country}.svg`
 }));
 
-const ItemBlockStyle = styled((props) => <Stack direction="row" alignItems="center" {...props} />)({
+const ItemBlockStyle = styled((props) => <Stack
+  direction="row"
+  {...props}
+  sx={[{
+    alignItems: "center"
+  }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]} />)({
   minWidth: 72,
   flex: '1 1'
 });
@@ -56,7 +61,9 @@ CountryItem.propTypes = {
 
 function CountryItem({ country }) {
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
+    <Stack direction="row" spacing={2} sx={{
+      alignItems: "center"
+    }}>
       <ItemBlockStyle sx={{ minWidth: 120 }}>
         <Box component="img" alt={country.name} src={country.flag} sx={{ height: 20, mr: 1 }} />
         <Typography variant="subtitle2">{country.name}</Typography>

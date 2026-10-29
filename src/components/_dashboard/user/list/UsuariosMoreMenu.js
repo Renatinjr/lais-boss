@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { paramCase } from 'change-case';
+import { kebabCase } from 'change-case';
 import { useRef, useState } from 'react';
 import editFill from '@iconify/icons-eva/edit-fill';
-import { Link as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 import trash2Outline from '@iconify/icons-eva/trash-2-outline';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
-import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@material-ui/core';
+import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 
@@ -48,7 +48,9 @@ export default function UsuariosMoreMenu({  onEdit }) {
           <ListItemIcon>
             <Icon icon={editFill} width={24} height={24} />
           </ListItemIcon>
-          <ListItemText primary="Editar Usuário" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Editar Usuário" slotProps={{
+            primary: { variant: 'body2' }
+          }} />
         </MenuItem>
       </Menu>
     </>

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useRef, useState } from 'react';
 import { sentenceCase } from 'change-case';
-import { Link as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 import shareFill from '@iconify/icons-eva/share-fill';
 import printerFill from '@iconify/icons-eva/printer-fill';
 import archiveFill from '@iconify/icons-eva/archive-fill';
@@ -9,7 +9,7 @@ import downloadFill from '@iconify/icons-eva/download-fill';
 import trash2Outline from '@iconify/icons-eva/trash-2-outline';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 import {
   Box,
@@ -26,7 +26,7 @@ import {
   Typography,
   CardHeader,
   TableContainer
-} from '@material-ui/core';
+} from '@mui/material';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 import mockData from '../../../utils/mock-data';
@@ -163,7 +163,7 @@ export default function AppNewInvoice() {
 
       <Box sx={{ p: 2, textAlign: 'right' }}>
         <Button
-          to="#"
+          href="#"
           size="small"
           color="inherit"
           component={RouterLink}

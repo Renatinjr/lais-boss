@@ -1,5 +1,8 @@
+'use client';
+
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 // hooks
 import useAuth from '../hooks/useAuth';
 // routes
@@ -13,9 +16,16 @@ GuestGuard.propTypes = {
 
 export default function GuestGuard({ children }) {
   const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace(PATH_DASHBOARD.root);
+    }
+  }, [isAuthenticated, router]);
 
   if (isAuthenticated) {
-    return <Navigate to={PATH_DASHBOARD.root} />;
+    return null;
   }
 
   return <>{children}</>;

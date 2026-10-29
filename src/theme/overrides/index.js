@@ -44,7 +44,6 @@ import ButtonGroup from './ButtonGroup';
 import Autocomplete from './Autocomplete';
 import ToggleButton from './ToggleButton';
 import ControlLabel from './ControlLabel';
-import LoadingButton from './LoadingButton';
 
 // ----------------------------------------------------------------------
 
@@ -94,7 +93,6 @@ export default function ComponentsOverrides(theme) {
     Breadcrumbs(theme),
     Autocomplete(theme),
     ControlLabel(theme),
-    ToggleButton(theme),
-    LoadingButton(theme)
+    ToggleButton(theme)
   );
 }

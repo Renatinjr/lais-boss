@@ -1,13 +1,14 @@
 import { Icon } from '@iconify/react';
-import { useSnackbar } from 'notistack5';
+import { useSnackbar } from 'notistack';
 import { useRef, useState } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import RouterLink from 'next/link';
+import { useRouter } from 'next/navigation';
 // material
-import { alpha } from '@material-ui/core/styles';
-import { Button, Box, Divider, MenuItem, Typography } from '@material-ui/core';
+import { alpha } from '@mui/material/styles';
+import { Button, Box, Divider, MenuItem, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks
@@ -43,7 +44,7 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover({show}) {
   const anchorRef = useRef(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const isMountedRef = useIsMountedRef();
   const { user, logout } = useAuth();
@@ -59,7 +60,7 @@ export default function AccountPopover({show}) {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/');
+      router.push('/');
       if (isMountedRef.current) {
         handleClose();
       }

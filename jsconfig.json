@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "next.config.mjs"]
 }

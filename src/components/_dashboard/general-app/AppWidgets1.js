@@ -3,8 +3,8 @@ import { Icon } from '@iconify/react';
 import ReactApexChart from 'react-apexcharts';
 import personFill from '@iconify/icons-eva/person-fill';
 // material
-import { useTheme, styled } from '@material-ui/core/styles';
-import { Card, Typography, Box } from '@material-ui/core';
+import { useTheme, styled } from '@mui/material/styles';
+import { Card, Typography, Box } from '@mui/material';
 // utils
 import { fNumber } from '../../../utils/formatNumber';
 import { BaseOptionChart } from '../../charts';

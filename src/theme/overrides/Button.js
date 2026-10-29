@@ -1,5 +1,7 @@
 // ----------------------------------------------------------------------
 
+const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'];
+
 export default function Button(theme) {
   return {
     MuiButton: {
@@ -7,48 +9,46 @@ export default function Button(theme) {
         root: {
           '&:hover': {
             boxShadow: 'none'
-          }
+          },
+          // MUI 9 removed compound slots (containedPrimary, outlinedInherit, ...); they are variants now
+          variants: [
+            // contained
+            {
+              props: { variant: 'contained', color: 'inherit' },
+              style: {
+                color: theme.palette.grey[800],
+                boxShadow: theme.customShadows.z8,
+                '&:hover': {
+                  backgroundColor: theme.palette.grey[400]
+                }
+              }
+            },
+            ...COLORS.map((color) => ({
+              props: { variant: 'contained', color },
+              style: { boxShadow: theme.customShadows[color] }
+            })),
+            // outlined
+            {
+              props: { variant: 'outlined', color: 'inherit' },
+              style: {
+                border: `1px solid ${theme.palette.grey[500_32]}`,
+                '&:hover': {
+                  backgroundColor: theme.palette.action.hover
+                }
+              }
+            },
+            {
+              props: { variant: 'text', color: 'inherit' },
+              style: {
+                '&:hover': {
+                  backgroundColor: theme.palette.action.hover
+                }
+              }
+            }
+          ]
         },
         sizeLarge: {
           height: 48
-        },
-        // contained
-        containedInherit: {
-          color: theme.palette.grey[800],
-          boxShadow: theme.customShadows.z8,
-          '&:hover': {
-            backgroundColor: theme.palette.grey[400]
-          }
-        },
-        containedPrimary: {
-          boxShadow: theme.customShadows.primary
-        },
-        containedSecondary: {
-          boxShadow: theme.customShadows.secondary
-        },
-        containedInfo: {
-          boxShadow: theme.customShadows.info
-        },
-        containedSuccess: {
-          boxShadow: theme.customShadows.success
-        },
-        containedWarning: {
-          boxShadow: theme.customShadows.warning
-        },
-        containedError: {
-          boxShadow: theme.customShadows.error
-        },
-        // outlined
-        outlinedInherit: {
-          border: `1px solid ${theme.palette.grey[500_32]}`,
-          '&:hover': {
-            backgroundColor: theme.palette.action.hover
-          }
-        },
-        textInherit: {
-          '&:hover': {
-            backgroundColor: theme.palette.action.hover
-          }
         }
       }
     }

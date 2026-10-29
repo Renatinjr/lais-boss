@@ -1,8 +1,8 @@
 import { last } from 'lodash';
 import PropTypes from 'prop-types';
 // material
-import { Link as RouterLink } from 'react-router-dom';
-import { Typography, Box, Link, Breadcrumbs } from '@material-ui/core';
+import RouterLink from 'next/link';
+import { Typography, Box, Link, Breadcrumbs } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -16,10 +16,10 @@ function LinkItem({ link }) {
   const { href, name, icon } = link;
   return (
     <Link
-      to={href}
       key={name}
       variant="body2"
-      component={RouterLink}
+      // items without href render as plain text (next/link requires an href)
+      {...(href ? { href, component: RouterLink } : { component: 'span' })}
       sx={{
         lineHeight: 2,
         display: 'flex',

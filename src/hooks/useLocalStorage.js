@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -21,13 +21,16 @@ export default function useLocalStorage(key, defaultValue) {
     };
   }, [key, defaultValue]);
 
-  const setValueInLocalStorage = (newValue) => {
-    setValue((currentValue) => {
-      const result = typeof newValue === 'function' ? newValue(currentValue) : newValue;
-      localStorage.setItem(key, JSON.stringify(result));
-      return result;
-    });
-  };
+  const setValueInLocalStorage = useCallback(
+    (newValue) => {
+      setValue((currentValue) => {
+        const result = typeof newValue === 'function' ? newValue(currentValue) : newValue;
+        localStorage.setItem(key, JSON.stringify(result));
+        return result;
+      });
+    },
+    [key]
+  );
 
   return [value, setValueInLocalStorage];
 }

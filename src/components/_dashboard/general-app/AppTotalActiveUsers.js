@@ -3,8 +3,8 @@ import ReactApexChart from 'react-apexcharts';
 import trendingUpFill from '@iconify/icons-eva/trending-up-fill';
 import trendingDownFill from '@iconify/icons-eva/trending-down-fill';
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { Box, Card, Typography, Stack } from '@material-ui/core';
+import { alpha, useTheme, styled } from '@mui/material/styles';
+import { Box, Card, Typography, Stack } from '@mui/material';
 // utils
 import { fNumber, fPercent } from '../../../utils/formatNumber';
 
@@ -51,7 +51,14 @@ export default function AppTotalActiveUsers() {
     <Card sx={{ display: 'flex', alignItems: 'center', p: 3 }}>
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant="subtitle2">Total Active Users</Typography>
-        <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 2, mb: 1 }}>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            alignItems: "center",
+            mt: 2,
+            mb: 1
+          }}>
           <IconWrapperStyle
             sx={{
               ...(PERCENT < 0 && {

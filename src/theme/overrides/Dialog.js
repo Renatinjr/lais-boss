@@ -19,7 +19,8 @@ export default function Dialog(theme) {
             margin: theme.spacing(2)
           },
           '@media (max-width: 663.95px)': {
-            '&.MuiDialog-paperWidthSm.MuiDialog-paperScrollBody': {
+            // MUI 9 dropped paperScrollBody; scroll="body" is marked on the container
+            '.MuiDialog-scrollBody > &.MuiDialog-paperWidthSm': {
               maxWidth: '100%'
             }
           }

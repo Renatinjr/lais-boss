@@ -2,10 +2,10 @@ import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import RouterLink from 'next/link';
 // material
-import { alpha, useTheme, styled } from '@material-ui/core/styles';
-import { CardContent, Box, Card, Typography } from '@material-ui/core';
+import { alpha, useTheme, styled } from '@mui/material/styles';
+import { CardContent, Box, Card, Typography } from '@mui/material';
 // utils
 import mockData from '../../../utils/mock-data';
 //
@@ -43,7 +43,7 @@ function CarouselItem({ item, isActive }) {
   const { image, title, description } = item;
 
   return (
-    <RouterLink to="#">
+    <RouterLink href="#">
       <Box sx={{ position: 'relative' }}>
         <Box
           sx={{

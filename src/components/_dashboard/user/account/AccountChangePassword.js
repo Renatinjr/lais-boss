@@ -1,9 +1,8 @@
 import * as Yup from 'yup';
-import { useSnackbar } from 'notistack5';
+import { useSnackbar } from 'notistack';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
-import { Stack, Card, TextField } from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
+import { Stack, Card, TextField, Button } from '@mui/material';
 // utils
 import fakeRequest from '../../../../utils/fakeRequest';
 
@@ -39,7 +38,9 @@ export default function AccountChangePassword() {
     <Card sx={{ p: 3 }}>
       <FormikProvider value={formik}>
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <Stack spacing={3} alignItems="flex-end">
+          <Stack spacing={3} sx={{
+            alignItems: "flex-end"
+          }}>
             <TextField
               {...getFieldProps('oldPassword')}
               fullWidth
@@ -70,9 +71,9 @@ export default function AccountChangePassword() {
               helperText={touched.confirmNewPassword && errors.confirmNewPassword}
             />
 
-            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+            <Button type="submit" variant="contained" loading={isSubmitting}>
               Save Changes
-            </LoadingButton>
+            </Button>
           </Stack>
         </Form>
       </FormikProvider>

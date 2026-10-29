@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+'use client';
+
 import PropTypes from 'prop-types';
 // hooks
 import useAuth from '../hooks/useAuth';
 // pages
-import Login from '../pages/authentication/Login';
+import Login from '../views/authentication/Login';
 
 // ----------------------------------------------------------------------
 
@@ -12,21 +12,12 @@ AuthGuard.propTypes = {
   children: PropTypes.node
 };
 
+// Login renders in place at the requested URL, so once authenticated the page is already where the user wanted to go.
 export default function AuthGuard({ children }) {
   const { isAuthenticated } = useAuth();
-  const { pathname } = useLocation();
-  const [requestedLocation, setRequestedLocation] = useState(null);
 
   if (!isAuthenticated) {
-    if (pathname !== requestedLocation) {
-      setRequestedLocation(pathname);
-    }
     return <Login />;
-  }
-
-  if (requestedLocation && pathname !== requestedLocation) {
-    setRequestedLocation(null);
-    return <Navigate to={requestedLocation} />;
   }
 
   return <>{children}</>;

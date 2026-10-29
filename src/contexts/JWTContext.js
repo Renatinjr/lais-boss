@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import axios from '../utils/axios';
 import { isValidToken, setSession } from '../utils/jwt';
 
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
 // ----------------------------------------------------------------------
 

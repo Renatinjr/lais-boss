@@ -6,6 +6,8 @@ import checkmarkCircle2Fill from '@iconify/icons-eva/checkmark-circle-2-fill';
 
 // ----------------------------------------------------------------------
 
+const SEVERITIES = ['info', 'success', 'warning', 'error'];
+
 export default function Alert(theme) {
   const isLight = theme.palette.mode === 'light';
 
@@ -42,6 +44,14 @@ export default function Alert(theme) {
       },
 
       styleOverrides: {
+        // MUI 9 removed compound slots (standardInfo, filledError, ...); they are variants now
+        root: {
+          variants: SEVERITIES.flatMap((severity) => [
+            { props: { variant: 'standard', severity }, style: standardStyle(severity) },
+            { props: { variant: 'filled', severity }, style: filledStyle(severity) },
+            { props: { variant: 'outlined', severity }, style: outlinedStyle(severity) }
+          ])
+        },
         message: {
           '& .MuiAlertTitle-root': {
             marginBottom: theme.spacing(0.5)
@@ -51,22 +61,7 @@ export default function Alert(theme) {
           '& button:not(:first-of-type)': {
             marginLeft: theme.spacing(1)
           }
-        },
-
-        standardInfo: standardStyle('info'),
-        standardSuccess: standardStyle('success'),
-        standardWarning: standardStyle('warning'),
-        standardError: standardStyle('error'),
-
-        filledInfo: filledStyle('info'),
-        filledSuccess: filledStyle('success'),
-        filledWarning: filledStyle('warning'),
-        filledError: filledStyle('error'),
-
-        outlinedInfo: outlinedStyle('info'),
-        outlinedSuccess: outlinedStyle('success'),
-        outlinedWarning: outlinedStyle('warning'),
-        outlinedError: outlinedStyle('error')
+        }
       }
     }
   };

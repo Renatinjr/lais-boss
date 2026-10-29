@@ -4,8 +4,8 @@ import { Icon } from '@iconify/react';
 import heartFill from '@iconify/icons-eva/heart-fill';
 import trophyFilled from '@iconify/icons-ant-design/trophy-filled';
 // material
-import { alpha, styled } from '@material-ui/core/styles';
-import { Box, Stack, Card, Avatar, CardHeader, Typography } from '@material-ui/core';
+import { alpha, styled } from '@mui/material/styles';
+import { Box, Stack, Card, Avatar, CardHeader, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import mockData from '../../../utils/mock-data';
@@ -43,7 +43,9 @@ AuthorItem.propTypes = {
 
 function AuthorItem({ author, index }) {
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
+    <Stack direction="row" spacing={2} sx={{
+      alignItems: "center"
+    }}>
       <Avatar alt={author.name} src={author.avatar} />
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant="subtitle2">{author.name}</Typography>

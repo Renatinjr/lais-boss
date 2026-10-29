@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
-import { useSnackbar } from 'notistack5';
-import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
-import { LoadingButton } from '@material-ui/lab';
 import {
   Box,
   Card,
@@ -26,7 +24,8 @@ import {
   Select,
   MenuItem,
   InputLabel,
-} from '@material-ui/core';
+  Button
+} from '@mui/material';
 // utils
 import { fData } from '../../../utils/formatNumber';
 import fakeRequest from '../../../utils/fakeRequest';
@@ -36,10 +35,10 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import Label from '../../Label';
 import { UploadAvatar } from '../../upload';
 import countries from './countries';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import CloseIcon from '@material-ui/icons/Close';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CloseIcon from '@mui/icons-material/Close';
 import v2_actionEditarCliente from 'src/actions/v2/clientes/v2_actionEditarCliente';
 
 // ACTIONS ---------------------------------------------------------------------
@@ -299,10 +298,17 @@ export default function ClientForm({
   return (
     <Box>
       <Card sx={{ p: 3, width: '100%' }}>
-        <Typography variant="h5" paragraph>
+        <Typography variant="h5" sx={{
+          marginBottom: "16px"
+        }}>
           Dados Essenciais
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        <Typography
+          variant="body2"
+          sx={{
+            color: "text.secondary",
+            mb: 3
+          }}>
           Configure as informações básicas e controles do cliente
         </Typography>
 
@@ -381,7 +387,9 @@ export default function ClientForm({
               Créditos de IA
             </Typography>
             <Stack spacing={2}>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{
+                color: "text.secondary"
+              }}>
                 Uso por categoria
               </Typography>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, sm: 2 }}>
@@ -422,7 +430,9 @@ export default function ClientForm({
                 />
               </Stack>
 
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{
+                color: "text.secondary"
+              }}>
                 Totais
               </Typography>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, sm: 2 }}>
@@ -514,7 +524,13 @@ export default function ClientForm({
                   m: 0
                 }}
               />
-              <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "text.secondary",
+                  mt: 1,
+                  display: 'block'
+                }}>
                 Ativa o sistema de monitoramento automático do WhatsApp
               </Typography>
             </Box>
@@ -547,7 +563,13 @@ export default function ClientForm({
                   m: 0
                 }}
               />
-              <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "text.secondary",
+                  mt: 1,
+                  display: 'block'
+                }}>
                 Quando ativo, exibe banner de aviso no topo do sistema para todos os usuários deste cliente
               </Typography>
               {inadimplenciaAtivo && (
@@ -561,7 +583,7 @@ export default function ClientForm({
                     placeholder="Ex.: Fatura em aberto. Entre em contato com o suporte para regularizar."
                     fullWidth
                   />
-                  <LoadingButton
+                  <Button
                     type="button"
                     onClick={() => submitInadimplencia && submitInadimplencia(true, inadimplenciaMensagem)}
                     loading={inadimplenciaLoading}
@@ -570,7 +592,7 @@ export default function ClientForm({
                     sx={{ alignSelf: 'flex-end' }}
                   >
                     Salvar mensagem
-                  </LoadingButton>
+                  </Button>
                 </Stack>
               )}
             </Box>
@@ -588,11 +610,13 @@ export default function ClientForm({
             borderColor: 'divider'
           }}>
             <Box sx={{ flexGrow: 1 }}>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{
+                color: "text.secondary"
+              }}>
                 Clique em "Salvar" para aplicar as alterações nos dados essenciais
               </Typography>
             </Box>
-            <LoadingButton
+            <Button
               onClick={submitDadosEssenciais}
               type="submit"
               loading={isLoading}
@@ -600,17 +624,21 @@ export default function ClientForm({
               sx={{ backgroundColor: 'green', '&:hover': { backgroundColor: 'green.dark' } }}
             >
               Salvar Dados Essenciais
-            </LoadingButton>
+            </Button>
           </Box>
         </Stack>
       </Card>
 
       <Card sx={{ p: 3, width: '100%', mt: 2 }}>
-        <Typography variant="h5" paragraph>
+        <Typography variant="h5" sx={{
+          marginBottom: "16px"
+        }}>
           Features
         </Typography>
         <Stack spacing={3}>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{
+            color: "text.secondary"
+          }}>
             Gerencie as funcionalidades disponíveis para este cliente. Selecione uma feature da lista abaixo para adicioná-la.
           </Typography>
 
@@ -641,7 +669,9 @@ export default function ClientForm({
                           <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                             {feature.name}
                           </Typography>
-                          <Typography variant="caption" color="text.secondary">
+                          <Typography variant="caption" sx={{
+                            color: "text.secondary"
+                          }}>
                             {feature.value}
                           </Typography>
                         </Box>
@@ -651,14 +681,14 @@ export default function ClientForm({
                 }).flat()}
               </Select>
             </FormControl>
-            <LoadingButton
+            <Button
               variant="contained"
               onClick={handleAdicionarFeature}
               disabled={!featureSelecionada}
               startIcon={<AddIcon />}
             >
               Adicionar
-            </LoadingButton>
+            </Button>
           </Stack>
 
           {features.length > 0 && (
@@ -680,7 +710,9 @@ export default function ClientForm({
                     <Typography variant="subtitle2" sx={{ mb: 1, color: 'primary.main', fontWeight: 'bold' }}>
                       {categoria}
                     </Typography>
-                    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                    <Stack direction="row" spacing={1} useFlexGap sx={{
+                      flexWrap: "wrap"
+                    }}>
                       {featuresAtivasDaCategoria.map((featureValue, index) => {
                         const featureInfo = featuresWithCategories.find(f => f.value === featureValue);
                         return (
@@ -712,10 +744,17 @@ export default function ClientForm({
               borderRadius: 2,
               bgcolor: 'grey.50'
             }}>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "text.secondary",
+                  mb: 1
+                }}>
                 📋 Nenhuma feature adicionada
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{
+                color: "text.secondary"
+              }}>
                 Selecione uma feature da lista acima para começar
               </Typography>
             </Box>
@@ -730,17 +769,24 @@ export default function ClientForm({
               borderRadius: 2,
               bgcolor: 'success.lighter'
             }}>
-              <Typography variant="body1" color="success.main" sx={{ mb: 1 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "success.main",
+                  mb: 1
+                }}>
                 ✅ Todas as features disponíveis foram adicionadas
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{
+                color: "text.secondary"
+              }}>
                 Este cliente tem acesso a todas as funcionalidades disponíveis
               </Typography>
             </Box>
           )}
 
           <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-            <LoadingButton
+            <Button
               onClick={async () => {
                 try {
                   await handleEditarCliente({ features: features }, 'editar_features');
@@ -754,7 +800,7 @@ export default function ClientForm({
               disabled={features.length === 0}
             >
               Salvar Features
-            </LoadingButton>
+            </Button>
           </Box>
         </Stack>
       </Card>
@@ -790,7 +836,7 @@ export default function ClientForm({
             </TextField>
           </Grid> */}
 
-          <Grid item xs={8}>
+          <Grid size={8}>
             <Typography variant="subtitle2" sx={{ mb: 1 }}>
               Serviços Disponíveis
             </Typography>
@@ -817,20 +863,20 @@ export default function ClientForm({
                       </Typography>
 
                     </Box>
-                    <LoadingButton
+                    <Button
                       size="small"
                       variant="outlined"
                       onClick={() => handleAdicionarAoCarrinho(addon)}
                       startIcon={<AddIcon />}
                     >
                       Adicionar
-                    </LoadingButton>
+                    </Button>
                   </Box>
                 ))}
             </Stack>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid size={4}>
             <Typography variant="subtitle2" sx={{ mb: 1 }}>
               Carrinho
             </Typography>
@@ -857,7 +903,13 @@ export default function ClientForm({
                           {servicoCompleto?.name || item.nome}
                         </Typography>
                         {servicoCompleto?.description && (
-                          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', fontSize: '0.7rem' }}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: "text.secondary",
+                              display: 'block',
+                              fontSize: '0.7rem'
+                            }}>
                             {servicoCompleto.description}
                           </Typography>
                         )}
@@ -866,20 +918,20 @@ export default function ClientForm({
                     </Box>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <LoadingButton
+                      <Button
                         size="small"
                         variant="outlined"
                         onClick={() => handleRemoverDoCarrinho(item.id)}
                         sx={{ minWidth: 24, height: 24 }}
                       >
                         <RemoveIcon fontSize="small" />
-                      </LoadingButton>
+                      </Button>
 
                       <Typography variant="caption" sx={{ px: 1, fontWeight: 'medium' }}>
                         {item.quantidade}
                       </Typography>
 
-                      <LoadingButton
+                      <Button
                         size="small"
                         variant="outlined"
                         onClick={() => {
@@ -890,7 +942,7 @@ export default function ClientForm({
                         sx={{ minWidth: 24, height: 24 }}
                       >
                         <AddIcon fontSize="small" />
-                      </LoadingButton>
+                      </Button>
                     </Box>
                   </Box>
                 );
@@ -905,9 +957,11 @@ export default function ClientForm({
                     type="number"
                     value={desconto}
                     onChange={handleDescontoChange}
-                    inputProps={{
-                      min: 0,
-                      step: 0.01
+                    slotProps={{
+                      htmlInput: {
+                        min: 0,
+                        step: 0.01
+                      }
                     }}
                   />
 
@@ -944,21 +998,20 @@ export default function ClientForm({
             </Stack>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
-              <LoadingButton onClick={() => {
+              <Button onClick={() => {
                 const ids = addonsSelecionados.map(item => item.id);
                 console.log(ids);
                 handleEditarCliente({ "billing.services": ids }, 'editar_addons');
                 console.log(addonsSelecionados);
               }} type="submit" variant="contained" size="small">
                 Salvar Configurações
-              </LoadingButton>
+              </Button>
             </Box>
           </Grid>
         </Grid>
       </Card>
-
 
     </Box>
   );

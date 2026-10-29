@@ -1,46 +1,38 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { SnackbarProvider } from 'notistack5';
+import { SnackbarProvider, MaterialDesignContent } from 'notistack';
 import infoFill from '@iconify/icons-eva/info-fill';
 import alertCircleFill from '@iconify/icons-eva/alert-circle-fill';
 import alertTriangleFill from '@iconify/icons-eva/alert-triangle-fill';
 import checkmarkCircle2Fill from '@iconify/icons-eva/checkmark-circle-2-fill';
 // material
-import { makeStyles, createStyles } from '@material-ui/styles';
-import { alpha } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { alpha, styled } from '@mui/material/styles';
+import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-const useStyles = makeStyles((theme) => {
+const StyledContent = styled(MaterialDesignContent)(({ theme }) => {
   const isLight = theme.palette.mode === 'light';
 
   const createStyle = {
-    color: `${theme.palette.text.primary} !important`,
-    backgroundColor: `${theme.palette.background.paper} !important`
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.background.paper
   };
 
-  return createStyles({
-    containerRoot: {
-      pointerEvents: 'unset',
-      '& .MuiCollapse-wrapperInner': {
-        width: '100%'
-      }
-    },
-    contentRoot: {
-      width: '100%',
-      padding: theme.spacing(1.5),
-      margin: theme.spacing(0.25, 0),
-      boxShadow: theme.customShadows.z8,
-      borderRadius: theme.shape.borderRadius,
-      color: theme.palette.grey[isLight ? 0 : 800],
-      backgroundColor: theme.palette.grey[isLight ? 900 : 0]
-    },
-    message: {
+  return {
+    width: '100%',
+    padding: theme.spacing(1.5),
+    margin: theme.spacing(0.25, 0),
+    boxShadow: theme.customShadows.z8,
+    borderRadius: theme.shape.borderRadius,
+    color: theme.palette.grey[isLight ? 0 : 800],
+    backgroundColor: theme.palette.grey[isLight ? 900 : 0],
+    '& #notistack-snackbar': {
       padding: 0,
       fontWeight: theme.typography.fontWeightMedium
     },
-    action: {
+    // action container (sibling after the message; it has no stable class name in notistack v3)
+    '& #notistack-snackbar ~ div': {
       marginRight: -4,
       '& svg': {
         width: 20,
@@ -49,11 +41,8 @@ const useStyles = makeStyles((theme) => {
         '&:hover': { opacity: 1 }
       }
     },
-    info: { ...createStyle },
-    success: { ...createStyle },
-    warning: { ...createStyle },
-    error: { ...createStyle }
-  });
+    '&.notistack-MuiContent-info, &.notistack-MuiContent-success, &.notistack-MuiContent-warning, &.notistack-MuiContent-error': createStyle
+  };
 });
 
 // ----------------------------------------------------------------------
@@ -89,8 +78,6 @@ NotistackProvider.propTypes = {
 };
 
 export default function NotistackProvider({ children }) {
-  const classes = useStyles();
-
   return (
     <SnackbarProvider
       dense
@@ -107,15 +94,12 @@ export default function NotistackProvider({ children }) {
         warning: <SnackbarIcon icon={alertTriangleFill} color="warning" />,
         info: <SnackbarIcon icon={alertCircleFill} color="info" />
       }}
-      classes={{
-        containerRoot: classes.containerRoot,
-        contentRoot: classes.contentRoot,
-        message: classes.message,
-        action: classes.action,
-        variantInfo: classes.info,
-        variantSuccess: classes.success,
-        variantWarning: classes.warning,
-        variantError: classes.error
+      Components={{
+        default: StyledContent,
+        info: StyledContent,
+        success: StyledContent,
+        warning: StyledContent,
+        error: StyledContent
       }}
     >
       {children}
