@@ -1,0 +1,69 @@
+import { Icon } from '@iconify/react';
+import { useSnackbar } from 'notistack5';
+
+import twitterFill from '@iconify/icons-eva/twitter-fill';
+import linkedinFill from '@iconify/icons-eva/linkedin-fill';
+import facebookFill from '@iconify/icons-eva/facebook-fill';
+import instagramFilled from '@iconify/icons-ant-design/instagram-filled';
+// material
+import { Stack, Card, TextField, InputAdornment } from '@material-ui/core';
+import { LoadingButton } from '@material-ui/lab';
+// redux
+import { useSelector } from '../../../../redux/store';
+// utils
+import fakeRequest from '../../../../utils/fakeRequest';
+
+// ----------------------------------------------------------------------
+
+const SOCIAL_LINKS_OPTIONS = [
+  {
+    value: 'facebookLink',
+    icon: <Icon icon={facebookFill} height={24} />
+  },
+  {
+    value: 'instagramLink',
+    icon: <Icon icon={instagramFilled} height={24} />
+  },
+  {
+    value: 'linkedinLink',
+    icon: <Icon icon={linkedinFill} height={24} />
+  },
+  {
+    value: 'twitterLink',
+    icon: <Icon icon={twitterFill} height={24} />
+  }
+];
+
+// ----------------------------------------------------------------------
+
+export default function AccountSocialLinks() {
+  const { enqueueSnackbar } = useSnackbar();
+  const { myProfile } = useSelector((state) => state.user);
+
+
+
+
+  return (
+    <Card sx={{ p: 3 }}>
+
+ 
+          <Stack spacing={3} alignItems="flex-end">
+            {SOCIAL_LINKS_OPTIONS.map((link) => (
+              <div>
+              <TextField>Teste</TextField>
+              <TextField>Teste</TextField>
+              </div>
+            ))}
+
+            <LoadingButton type="submit" variant="contained" 
+            //loading={isSubmitting}
+            
+            >
+              Save Changes
+            </LoadingButton>
+          </Stack>
+       
+
+    </Card>
+  );
+}
